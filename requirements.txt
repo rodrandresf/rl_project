@@ -1,0 +1,5 @@
+gymnasium==0.29.1
+gymnasium[toy_text]
+numpy>=1.26.0
+matplotlib>=3.8.0
+pytest>=8.0.0
