@@ -1,6 +1,8 @@
-from typing import List
-import matplotlib.pyplot as plt
+import os
+import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+from typing import List
 
 def plot_learning_curve(rewards: List[float], window: int = 50) -> None:
     """
@@ -22,3 +24,19 @@ def plot_learning_curve(rewards: List[float], window: int = 50) -> None:
     plt.grid(True)
     plt.savefig("learning_curve.png") # Guarda el resultado automáticamente
     plt.show()
+    # ... tu código gráfico anterior ...
+    pass
+
+
+def export_metrics_to_parquet(rewards: List[float], filepath: str = "logs/training_metrics.parquet") -> None:
+    """
+    Persistencia columnar de métricas de entrenamiento.
+    """
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    
+    df: pd.DataFrame = pd.DataFrame({
+        "episode": range(len(rewards)),
+        "reward": rewards
+    })
+    
+    df.to_parquet(filepath, engine="pyarrow", compression="snappy")

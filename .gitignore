@@ -1,0 +1,10 @@
+# Entornos y dependencias
+venv/
+__pycache__/
+
+# Artefactos de ML y Telemetría
+models/
+logs/
+
+# Outputs efímeros
+*.png
